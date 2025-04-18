@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/UI/Navbar';
-import Sidebar from "./components/UI/Sidebar.jsx"; 
+import Sidebar from './components/UI/Sidebar';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './components/Dashboard/Dashboard';
