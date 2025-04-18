@@ -1,110 +1,78 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import {
+  FaChartLine,
+  FaBook,
+  FaCalendarAlt,
+  FaComments,
+  FaPenFancy,
+  FaSpa,
+  FaVideo,
+  FaBars,
+  FaChevronLeft,
+} from 'react-icons/fa';
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
+  const { pathname } = useLocation();
 
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleSidebar = () => setIsOpen(!isOpen);
+
+  const menuItems = [
+    { label: 'Dashboard', icon: <FaChartLine />, path: '/dashboard' },
+    { label: 'Resources', icon: <FaBook />, path: '/resources' },
+    { label: 'Appointments', icon: <FaCalendarAlt />, path: '/appointments' },
+    { label: 'Chat', icon: <FaComments />, path: '/chat' },
+    { label: 'Journal', icon: <FaPenFancy />, path: '/journal' },
+    { label: 'Meditation', icon: <FaSpa />, path: '/meditation' },
+    { label: 'Video', icon: <FaVideo />, path: '/payments' },
+  ];
 
   return (
     <aside
-      className={`bg-gray-800 text-white h-screen p-4 transition-all duration-300 ${
-        isOpen ? 'w-64' : 'w-16'
-      }`}
+      className={`bg-gradient-to-b from-gray-800 to-gray-900 text-white h-screen p-4 transition-all duration-300 ${
+        isOpen ? 'w-72' : 'w-20'
+      } flex flex-col justify-between shadow-xl`}
     >
-      <div className="flex items-center justify-between mb-6">
-        {isOpen && (
-          <h2 className="text-xl font-semibold">WellnessHub</h2>
-        )}
-        <button
-          onClick={toggleSidebar}
-          className="text-white hover:text-gray-300 focus:outline-none"
-        >
-          {isOpen ? (
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          ) : (
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
+      {/* Top: Logo & Toggle */}
+      <div>
+        <div className="flex items-center justify-between mb-8">
+          {isOpen && (
+            <h2 className="text-2xl font-extrabold tracking-wide text-white transition-all duration-300">
+              Wellness<span className="text-green-400">Hub</span>
+            </h2>
           )}
-        </button>
+          <button
+            onClick={toggleSidebar}
+            className="text-gray-400 hover:text-white transition"
+          >
+            {isOpen ? <FaChevronLeft size={20} /> : <FaBars size={20} />}
+          </button>
+        </div>
+
+        {/* Nav Links */}
+        <nav className="space-y-2">
+          {menuItems.map(({ label, icon, path }) => (
+            <Link
+              key={label}
+              to={path}
+              className={`flex items-center gap-3 px-3 py-2 rounded-lg group transition-all duration-200 ${
+                pathname === path
+                  ? 'bg-gradient-to-r from-green-500 to-teal-400 text-white shadow-md'
+                  : 'hover:bg-gray-700'
+              }`}
+            >
+              <span className="text-lg text-green-400 group-hover:text-green-300">{icon}</span>
+              {isOpen && <span className="text-white">{label}</span>}
+            </Link>
+          ))}
+        </nav>
       </div>
-      <nav className={`space-y-2 ${isOpen ? 'block' : 'hidden'}`}>
-        <Link
-          to="/dashboard"
-          className="block p-2 rounded hover:bg-gray-700"
-        >
-          Dashboard
-        </Link>
-        <Link
-          to="/resources"
-          className="block p-2 rounded hover:bg-gray-700"
-        >
-          Resources
-        </Link>
-        <Link
-          to="/appointments"
-          className="block p-2 rounded hover:bg-gray-700"
-        >
-          Appointments
-        </Link>
-        <Link
-          to="/chat"
-          className="block p-2 rounded hover:bg-gray-700"
-        >
-          Chat
-        </Link>
-        <Link
-          to="/journal"
-          className="block p-2 rounded hover:bg-gray-700"
-        >
-          Journal
-        </Link>
-        <Link
-          to="/meditation"
-          className="block p-2 rounded hover:bg-gray-700"
-        >
-          Meditation
-        </Link>
-        <Link
-          to="/payments"
-          className="block p-2 rounded hover:bg-gray-700"
-        >
-          Payments
-        </Link>
-        <Link
-          to="/video"
-          className="block p-2 rounded hover:bg-gray-700"
-        >
-          Video
-        </Link>
-      </nav>
+
+      {/* Footer */}
+      <div className="text-center text-xs text-gray-500 mt-4">
+        {isOpen && <p>&copy; {new Date().getFullYear()} WellnessHub</p>}
+      </div>
     </aside>
   );
 };
