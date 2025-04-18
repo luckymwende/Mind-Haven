@@ -38,23 +38,32 @@ const Appointments = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-green-100 via-blue-50 to-purple-100 dark:from-gray-900 dark:to-gray-800 p-6">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold text-blue-700 dark:text-blue-300 mb-6 text-center">
-          Manage Appointments
+        <h1 className="text-5xl font-extrabold text-center text-blue-800 dark:text-blue-300 mb-10 drop-shadow-sm">
+          📅 Manage Appointments
         </h1>
 
         {/* Upcoming Appointments */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-10">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-white">Upcoming</h2>
+        <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-lg p-6 mb-12">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">Upcoming</h2>
           {appointments.length === 0 ? (
-            <p className="text-gray-600 dark:text-gray-400">No appointments scheduled.</p>
+            <p className="text-gray-600 dark:text-gray-400">No appointments scheduled yet. 🕊️</p>
           ) : (
-            <ul className="space-y-3">
+            <ul className="divide-y divide-gray-200 dark:divide-gray-700">
               {appointments.map((appt) => (
-                <li key={appt.id} className="border-b border-gray-200 dark:border-gray-700 pb-2">
-                  <div className="text-lg text-gray-700 dark:text-gray-200 font-medium">{appt.name}</div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">{appt.date} at {appt.time}</div>
+                <li key={appt.id} className="py-3">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <div className="text-lg font-semibold text-blue-700 dark:text-blue-300">{appt.name}</div>
+                      <div className="text-sm text-gray-500 dark:text-gray-400">
+                        {appt.date} at {appt.time}
+                      </div>
+                    </div>
+                    <span className="text-sm bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-white px-3 py-1 rounded-full shadow-sm">
+                      Scheduled
+                    </span>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -62,46 +71,48 @@ const Appointments = () => {
         </div>
 
         {/* Booking Form */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-white">Book a New Appointment</h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="block mb-1 text-gray-700 dark:text-gray-300">Appointment Type</label>
+        <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-lg p-6">
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Book a New Appointment</h2>
+          <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="md:col-span-2">
+              <label className="block text-gray-700 dark:text-gray-300 mb-1">Appointment Type</label>
               <input
                 type="text"
                 name="name"
                 value={form.name}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                className="w-full px-4 py-2 border-2 rounded-xl dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
                 placeholder="e.g. Therapy, Meditation"
               />
             </div>
             <div>
-              <label className="block mb-1 text-gray-700 dark:text-gray-300">Date</label>
+              <label className="block text-gray-700 dark:text-gray-300 mb-1">Date</label>
               <input
                 type="date"
                 name="date"
                 value={form.date}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                className="w-full px-4 py-2 border-2 rounded-xl dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
               />
             </div>
             <div>
-              <label className="block mb-1 text-gray-700 dark:text-gray-300">Time</label>
+              <label className="block text-gray-700 dark:text-gray-300 mb-1">Time</label>
               <input
                 type="time"
                 name="time"
                 value={form.time}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                className="w-full px-4 py-2 border-2 rounded-xl dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
               />
             </div>
-            <button
-              type="submit"
-              className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition"
-            >
-              Book Appointment
-            </button>
+            <div className="md:col-span-2">
+              <button
+                type="submit"
+                className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl shadow-md hover:scale-105 transition-transform"
+              >
+                ➕ Book Appointment
+              </button>
+            </div>
           </form>
         </div>
       </div>

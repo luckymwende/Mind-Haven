@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/UI/Navbar';
-import Sidebar from './components/UI/Sidebar';
+import Sidebar from "./components/UI/Sidebar.jsx"; 
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './components/Dashboard/Dashboard';
@@ -12,7 +12,6 @@ import Appointments from './pages/Appointments';
 import Journal from './pages/Journal';
 import Meditation from './pages/Meditation';
 import Payment from './pages/Payment';
-
 
 
 function App() {
@@ -33,6 +32,7 @@ function App() {
             <Route path="/chat" element={<ChatBox />} />
             <Route path="/meditation" element={<Meditation />} />
             <Route path="/payment" element={<Payment />} />
+            <Route pqath="/sidebar"element={<sidebar />} />
             <Route
               path="/video"
               element={

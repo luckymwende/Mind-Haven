@@ -40,37 +40,31 @@ const Resources = () => {
   const getIcon = (type) => {
     switch (type) {
       case 'video':
-        return <FaPlay className="text-blue-500 text-xl mr-2" />;
+        return <FaPlay className="text-blue-500 text-2xl mr-3" />;
       case 'article':
-        return <FaBook className="text-green-500 text-xl mr-2" />;
+        return <FaBook className="text-green-500 text-2xl mr-3" />;
       case 'audio':
-        return <FaHeadphones className="text-purple-500 text-xl mr-2" />;
+        return <FaHeadphones className="text-purple-500 text-2xl mr-3" />;
       default:
         return null;
     }
   };
 
   return (
-    <div
-      className="min-h-screen bg-cover bg-center bg-no-repeat py-12 px-4"
-      style={{
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1510074377623-8cf13fb90f58?auto=format&fit=crop&w=1400&q=80')",
-      }}
-    >
-      <div className="max-w-7xl mx-auto bg-white bg-opacity-80 backdrop-blur-md rounded-3xl shadow-lg p-8">
-        <h1 className="text-4xl font-extrabold text-center text-blue-800 mb-4">
+    <div className="min-h-screen bg-gradient-to-br from-sky-100 to-blue-50 py-16 px-6">
+      <div className="max-w-7xl mx-auto bg-white rounded-3xl shadow-2xl p-12">
+        <h1 className="text-5xl font-extrabold text-center bg-gradient-to-r from-blue-700 to-cyan-500 bg-clip-text text-transparent mb-6">
           Mental Health Resources
         </h1>
-        <p className="text-center text-lg text-gray-700 mb-10">
-          Explore curated videos, articles, and audio tools to support your wellness journey.
+        <p className="text-center text-lg text-gray-600 mb-14 max-w-2xl mx-auto">
+          Explore our carefully selected videos, articles, and audio tools designed to support your mental wellness journey.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {resources.map((resource) => (
             <div
               key={resource.id}
-              className="bg-white bg-opacity-90 backdrop-blur-lg rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-5 flex flex-col"
+              className="bg-white rounded-2xl shadow-md hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 p-6 flex flex-col"
             >
               {resource.type === 'video' ? (
                 <>
@@ -82,14 +76,14 @@ const Resources = () => {
                 </>
               ) : (
                 <>
-                  <div className="flex items-center mb-3">
+                  <div className="flex items-center mb-4">
                     {getIcon(resource.type)}
-                    <h2 className="text-lg font-semibold text-blue-700">{resource.title}</h2>
+                    <h2 className="text-xl font-bold text-blue-700">{resource.title}</h2>
                   </div>
-                  <p className="text-gray-600 mb-4 flex-grow">{resource.description}</p>
+                  <p className="text-gray-600 mb-6 flex-grow">{resource.description}</p>
                   <Link
                     to={resource.url}
-                    className="mt-auto inline-block text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                    className="inline-block text-center bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-5 py-2 rounded-xl font-semibold shadow-md hover:shadow-lg transition"
                   >
                     {resource.type === 'article' ? 'Read Article' : 'Listen Now'}
                   </Link>
