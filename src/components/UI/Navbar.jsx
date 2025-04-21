@@ -67,8 +67,11 @@ const links = [
   { path: '/chat', label: 'Chat' },
   { path: '/journal', label: 'Journal' },
   { path: '/meditation', label: 'Meditation' },
+  {path: '/payment', label: 'Payment' },
   { path: '/login', label: 'Login' },
   { path: '/signup', label: 'Sign Up' },
+{     path: '/logout', label: 'Logout' },
+  
 ];
 
 export default Navbar;

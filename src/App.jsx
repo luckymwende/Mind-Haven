@@ -12,6 +12,7 @@ import Appointments from './pages/Appointments';
 import Journal from './pages/Journal';
 import Meditation from './pages/Meditation';
 import Payment from './pages/Payment';
+import Logout from './pages/Logout';
 
 
 function App() {
@@ -33,6 +34,8 @@ function App() {
             <Route path="/meditation" element={<Meditation />} />
             <Route path="/payment" element={<Payment />} />
             <Route pqath="/sidebar"element={<sidebar />} />
+            <Route path="/logout" element={<Logout />} />
+            {/* Add the new routes here */}
             <Route
               path="/video"
               element={
