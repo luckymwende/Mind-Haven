@@ -7,7 +7,6 @@ import {
   FaComments,
   FaPenFancy,
   FaSpa,
-  FaVideo,
   FaBars,
   FaChevronLeft,
 } from 'react-icons/fa';
@@ -25,8 +24,7 @@ const Sidebar = () => {
     { label: 'Chat', icon: <FaComments />, path: '/chat' },
     { label: 'Journal', icon: <FaPenFancy />, path: '/journal' },
     { label: 'Meditation', icon: <FaSpa />, path: '/meditation' },
-    { label: 'Video', icon: <FaVideo />, path: '/payments' },
-  ];
+  ]; // Fixed: Properly closed the array
 
   return (
     <aside
